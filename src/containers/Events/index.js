@@ -19,22 +19,6 @@ const EventList = () => {
 
 
   const [currentPage, setCurrentPage] = useState(1);
-  console.log(currentPage)
-
-  // const filteredEvents = (
-  //   (!type
-  //     ? data?.events
-  //     : data?.events) || []
-  // ).filter((event, index) => {
-  //   if (
-  //     (currentPage - 1) * PER_PAGE <= index &&
-  //     PER_PAGE * currentPage > index
-  //   ) {
-  //     return true;
-  //   }
-  //   return false;
-  // });
-
   const filteredEvents = (
     (!type
       ? data?.events
@@ -47,16 +31,9 @@ const EventList = () => {
     }
     return false;
   });
+
   const activeEvents = (type === "all" ? data?.events : filteredEvents)
-  const displayedEvents = activeEvents.filter((index) => {
-    if (index >= (currentPage*PER_PAGE - 9)
-    && index <= (currentPage*PER_PAGE)){
-  return true
-  }
-  return false
-  })
-
-
+  const displayedEvents = activeEvents?.filter((_, index) => index >= (currentPage*PER_PAGE) - 9 && index < (currentPage*PER_PAGE));
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);
