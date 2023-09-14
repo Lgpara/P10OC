@@ -53,7 +53,7 @@ const EventList = () => {
             onChange={(value) => (value ? changeType(value) : changeType("all"))}
           />
           <div id="events" className="ListContainer">
-            {displayedEvents.map((event) => (
+            {displayedEvents?.map((event) => (
               <Modal key={event.id} Content={<ModalEvent event={event} />}>
                 {({ setIsOpened }) => (
                   <EventCard
